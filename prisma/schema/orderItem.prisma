@@ -1,0 +1,19 @@
+model OrderItem {
+  id         String   @id @default(uuid())
+
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  name       String   // snapshot
+  price      Float    // snapshot
+  quantity   Int
+  
+  size      String?
+  color      String?
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

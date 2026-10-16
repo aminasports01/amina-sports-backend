@@ -1,0 +1,40 @@
+enum ShipmentStatus {
+  PAID
+  UNPAID
+}
+
+enum ShippingStatus {
+  PROCESSING
+  COMPLETED
+}
+
+model Shipment {
+  id              String         @id @default(uuid())
+
+  date            DateTime
+  description     String?
+  amount          Decimal        @db.Decimal(12, 2)
+  status          ShipmentStatus
+
+  productName     String
+  quantity        Int
+
+  shippingCompany String
+  weight          Decimal        @db.Decimal(10, 2)
+  perKgRate       Decimal        @db.Decimal(10, 2)
+  shippingCharge  Decimal        @db.Decimal(12, 2)
+
+  billingStatus   ShipmentStatus
+  shippingStatus  ShippingStatus
+
+  receivingDate   DateTime?
+
+  investorName    String?
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("shipment-records")
+
+
+}

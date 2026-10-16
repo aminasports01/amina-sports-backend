@@ -1,0 +1,32 @@
+
+model InvestorPayment {
+  id              String   @id @default(cuid())
+
+  date            DateTime
+  description     String
+
+  amount          Decimal  @db.Decimal(12, 2)
+
+  status          InvestorPaymentStatus @default(PAID)
+
+  investorName    String
+
+  investedAmount  Decimal  @db.Decimal(12, 2)
+  receivedAmount  Decimal  @db.Decimal(12, 2)
+
+  paymentBy       String
+  referenceBy     String
+  platform        String
+
+  investmentStatus InvestmentStatus @default(RUNNING)
+
+  monthsPaid      Int      @default(0)
+
+  buyProducts     String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+ 
+  @@map("investor_payments")
+}

@@ -1,0 +1,9 @@
+model Hero {
+  id        String   @id @default(uuid())
+
+  offer     Json
+  banner    Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,0 +1,41 @@
+model Review {
+  id String @id @default(uuid())
+
+  // PRODUCT RELATION
+
+  productId String
+
+  product Product @relation(    fields: [productId],references: [id],    onDelete: Cascade )
+
+  // REVIEWER INFORMATION
+
+  userId String?
+
+  userName String?
+
+  userAvatar String?
+
+  // REVIEW CONTENT
+
+  rating Int
+  comment String?
+
+  // REVIEW ENGAGEMENT
+
+  likeCount Int @default(0)
+
+  // REVIEW STATUS
+
+  isPublished Boolean @default(true)
+
+  // TIMESTAMPS
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // INDEXES
+
+  @@index([productId])
+  @@index([rating])
+  @@index([createdAt])
+}

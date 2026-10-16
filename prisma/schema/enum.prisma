@@ -1,0 +1,23 @@
+enum Role {
+  CUSTOMER
+  ADMIN
+  SELLER
+  SUPER_ADMIN
+}
+
+enum STATUS {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+}
+
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  PARTIAL 
+}
+
+

@@ -1,0 +1,35 @@
+
+
+model Wholesale {
+  id              String          @id @default(uuid())
+
+  date            DateTime
+  description     String?
+  amount          Decimal         @db.Decimal(12, 2)
+  status          WholesaleStatus @default(UNPAID)
+
+  productName     String
+  quantity        Int
+
+  priceRmb        Decimal         @db.Decimal(12, 2)
+  priceTaka       Decimal         @db.Decimal(12, 2)
+
+  weight          Decimal         @db.Decimal(12, 2)
+  costPerKg       Decimal         @db.Decimal(12, 2)
+
+  shipping        Decimal         @db.Decimal(12, 2)
+  courierChina    String?
+
+  note            String?
+
+  onePairPrice    Decimal         @db.Decimal(12, 2)
+  salePrice       Decimal         @db.Decimal(12, 2)
+
+  loss            Decimal         @db.Decimal(12, 2) @default(0)
+  profit          Decimal         @db.Decimal(12, 2) @default(0)
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+    @@map("wholesale-records")
+}

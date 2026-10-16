@@ -1,0 +1,17 @@
+
+
+model SteadfastWithdrawal {
+  id               String                            @id @default(cuid())
+  date             DateTime
+  description      String
+  amount           Decimal                           @db.Decimal(12, 2)
+  status           SteadfastWithdrawalStatus        @default(PAID)
+  withdrawBy       String
+  paymentMethod    String
+  clearanceStatus  SteadfastWithdrawalClearanceStatus @default(PENDING)
+  createdAt        DateTime                          @default(now())
+  updatedAt        DateTime                          @updatedAt
+
+
+  @@map("steadfast_withdrawals")
+}
