@@ -6,14 +6,29 @@ import router from "./app/routes";
 import { handleWebhook } from "./app/modules/payment/payment.webhook";
 
 const app: Application = express();
-// FIRST: CORS
+
+// Allowed origins (Ensure all have the full https:// protocol)
+const allowedOrigins = [
+  "http://localhost:3000",
+  // "https://www.seraplace.com",
+  // "https://seraplace.com",
+  "https://amina-sports-frontend.vercel.app",
+];
+
 const corsOptions = {
-  origin: [
-    "http://localhost:3000",
-    "https://www.seraplace.com",
-    "www.seraplace.com",
-    "https://amina-sports-frontend.vercel.app",
-  ],
+  origin: (
+    origin: string | undefined,
+    callback: (err: Error | null, allow?: boolean) => void,
+  ) => {
+    // Allow requests with no origin (like mobile apps, curl, Postman, or server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: [
@@ -26,7 +41,9 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
+// FIRST: CORS and Preflight handler
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Explicitly handle preflight for all routes
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
