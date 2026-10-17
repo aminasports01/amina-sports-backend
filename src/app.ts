@@ -41,9 +41,8 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-// FIRST: CORS and Preflight handler
+// FIRST: CORS (this handles OPTIONS preflight automatically in Express 5)
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Explicitly handle preflight for all routes
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
