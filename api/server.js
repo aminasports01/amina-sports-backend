@@ -3650,11 +3650,12 @@ var CategoryController = {
 
 // src/app/modules/category/category.route.ts
 var router7 = Router5();
-router7.post("/", auth(Role.ADMIN), CategoryController.createCategory);
+var accessRole6 = auth(Role.ADMIN, Role.SUPER_ADMIN);
+router7.post("/", accessRole6, CategoryController.createCategory);
 router7.get("/", CategoryController.getAllCategories);
-router7.get("/:id", auth(Role.ADMIN), CategoryController.getSingleCategory);
-router7.patch("/:id", auth(Role.ADMIN), CategoryController.updateCategory);
-router7.delete("/:id", auth(Role.ADMIN), CategoryController.deleteCategory);
+router7.get("/:id", accessRole6, CategoryController.getSingleCategory);
+router7.patch("/:id", accessRole6, CategoryController.updateCategory);
+router7.delete("/:id", accessRole6, CategoryController.deleteCategory);
 var categoryRoutes = router7;
 
 // src/app/modules/hero-management/hero.route.ts
@@ -3804,12 +3805,12 @@ var HeroController = {
 
 // src/app/modules/hero-management/hero.route.ts
 var router8 = Router6();
-var accessRole6 = auth(Role.ADMIN, Role.SUPER_ADMIN);
-router8.post("/", accessRole6, HeroController.createHero);
-router8.get("/", accessRole6, HeroController.getAllHeroes);
-router8.get("/:id", accessRole6, HeroController.getHeroById);
-router8.patch("/:id", accessRole6, HeroController.updateHero);
-router8.delete("/:id", accessRole6, HeroController.deleteHero);
+var accessRole7 = auth(Role.ADMIN, Role.SUPER_ADMIN);
+router8.post("/", accessRole7, HeroController.createHero);
+router8.get("/", accessRole7, HeroController.getAllHeroes);
+router8.get("/:id", accessRole7, HeroController.getHeroById);
+router8.patch("/:id", accessRole7, HeroController.updateHero);
+router8.delete("/:id", accessRole7, HeroController.deleteHero);
 var HeroRoutes = router8;
 
 // src/app/modules/accounts/personal/personalEntry.route.ts
@@ -4018,12 +4019,12 @@ var PersonalEntryController = {
 
 // src/app/modules/accounts/personal/personalEntry.route.ts
 var router9 = express3.Router();
-var accessRole7 = auth(Role.ADMIN, Role.SUPER_ADMIN);
+var accessRole8 = auth(Role.ADMIN, Role.SUPER_ADMIN);
 router9.post("/", auth(Role.ADMIN), PersonalEntryController.createPersonalEntry);
-router9.get("/", accessRole7, PersonalEntryController.getAllPersonalEntries);
-router9.get("/:id", accessRole7, PersonalEntryController.getSinglePersonalEntry);
-router9.patch("/:id", accessRole7, PersonalEntryController.updatePersonalEntry);
-router9.delete("/:id", accessRole7, PersonalEntryController.deletePersonalEntry);
+router9.get("/", accessRole8, PersonalEntryController.getAllPersonalEntries);
+router9.get("/:id", accessRole8, PersonalEntryController.getSinglePersonalEntry);
+router9.patch("/:id", accessRole8, PersonalEntryController.updatePersonalEntry);
+router9.delete("/:id", accessRole8, PersonalEntryController.deletePersonalEntry);
 var PersonalEntryRoutes = router9;
 
 // src/app/modules/accounts/steadfast-withdrawal/steadfast-withdrawal.route.ts
@@ -4277,22 +4278,22 @@ var SteadfastWithdrawalController = {
 
 // src/app/modules/accounts/steadfast-withdrawal/steadfast-withdrawal.route.ts
 var router10 = Router7();
-var accessRole8 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
-router10.post("/", accessRole8, SteadfastWithdrawalController.createWithdrawal);
-router10.get("/", accessRole8, SteadfastWithdrawalController.getAllWithdrawals);
+var accessRole9 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
+router10.post("/", accessRole9, SteadfastWithdrawalController.createWithdrawal);
+router10.get("/", accessRole9, SteadfastWithdrawalController.getAllWithdrawals);
 router10.get(
   "/:id",
-  accessRole8,
+  accessRole9,
   SteadfastWithdrawalController.getSingleWithdrawal
 );
 router10.patch(
   "/:id",
-  accessRole8,
+  accessRole9,
   SteadfastWithdrawalController.updateWithdrawal
 );
 router10.delete(
   "/:id",
-  accessRole8,
+  accessRole9,
   SteadfastWithdrawalController.deleteWithdrawal
 );
 var SteadfastWithdrawalRoutes = router10;
@@ -4611,22 +4612,22 @@ var investorPaymentController = {
 
 // src/app/modules/accounts/investor-payment/investor-payment.route.ts
 var router11 = Router8();
-var accessRole9 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
-router11.post("/", accessRole9, investorPaymentController.createInvestorPayment);
-router11.get("/", accessRole9, investorPaymentController.getAllInvestorPayments);
+var accessRole10 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
+router11.post("/", accessRole10, investorPaymentController.createInvestorPayment);
+router11.get("/", accessRole10, investorPaymentController.getAllInvestorPayments);
 router11.get(
   "/:id",
-  accessRole9,
+  accessRole10,
   investorPaymentController.getSingleInvestorPayment
 );
 router11.patch(
   "/:id",
-  accessRole9,
+  accessRole10,
   investorPaymentController.updateInvestorPayment
 );
 router11.delete(
   "/:id",
-  accessRole9,
+  accessRole10,
   investorPaymentController.deleteInvestorPayment
 );
 var InvestorPaymentRoutes = router11;
@@ -4947,12 +4948,12 @@ var shipmentController = {
 
 // src/app/modules/accounts/shipment/shipment.route.ts
 var router12 = Router9();
-var accessRole10 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
-router12.post("/", accessRole10, shipmentController.createShipment);
+var accessRole11 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
+router12.post("/", accessRole11, shipmentController.createShipment);
 router12.get("/", shipmentController.getAllShipments);
 router12.get("/:id", shipmentController.getSingleShipment);
-router12.patch("/:id", accessRole10, shipmentController.updateShipment);
-router12.delete("/:id", accessRole10, shipmentController.deleteShipment);
+router12.patch("/:id", accessRole11, shipmentController.updateShipment);
+router12.delete("/:id", accessRole11, shipmentController.deleteShipment);
 var ShipmentRoutes = router12;
 
 // src/app/modules/accounts/wholesale/wholesale.route.ts
@@ -5259,12 +5260,12 @@ var wholesaleController = {
 
 // src/app/modules/accounts/wholesale/wholesale.route.ts
 var router13 = Router10();
-var accessRole11 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
-router13.post("/", accessRole11, wholesaleController.createWholesale);
-router13.get("/", accessRole11, wholesaleController.getAllWholesales);
-router13.get("/:id", accessRole11, wholesaleController.getSingleWholesale);
-router13.patch("/:id", accessRole11, wholesaleController.updateWholesale);
-router13.delete("/:id", accessRole11, wholesaleController.deleteWholesale);
+var accessRole12 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
+router13.post("/", accessRole12, wholesaleController.createWholesale);
+router13.get("/", accessRole12, wholesaleController.getAllWholesales);
+router13.get("/:id", accessRole12, wholesaleController.getSingleWholesale);
+router13.patch("/:id", accessRole12, wholesaleController.updateWholesale);
+router13.delete("/:id", accessRole12, wholesaleController.deleteWholesale);
 var WholesaleRoutes = router13;
 
 // src/app/modules/accounts/monthly-cost/monthly-cost.route.ts
@@ -5478,12 +5479,12 @@ var MonthlyCostController = {
 
 // src/app/modules/accounts/monthly-cost/monthly-cost.route.ts
 var router14 = Router11();
-var accessRole12 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
-router14.post("/", accessRole12, MonthlyCostController.createMonthlyCost);
-router14.get("/", accessRole12, MonthlyCostController.getAllMonthlyCosts);
-router14.get("/:id", accessRole12, MonthlyCostController.getSingleMonthlyCost);
-router14.patch("/:id", accessRole12, MonthlyCostController.updateMonthlyCost);
-router14.delete("/:id", accessRole12, MonthlyCostController.deleteMonthlyCost);
+var accessRole13 = auth(Role.ADMIN, Role.SELLER, Role.SUPER_ADMIN);
+router14.post("/", accessRole13, MonthlyCostController.createMonthlyCost);
+router14.get("/", accessRole13, MonthlyCostController.getAllMonthlyCosts);
+router14.get("/:id", accessRole13, MonthlyCostController.getSingleMonthlyCost);
+router14.patch("/:id", accessRole13, MonthlyCostController.updateMonthlyCost);
+router14.delete("/:id", accessRole13, MonthlyCostController.deleteMonthlyCost);
 var MonthlyCostRoutes = router14;
 
 // src/app/modules/analytics/analytics.route.ts
@@ -5746,8 +5747,8 @@ var analyticsController = {
 
 // src/app/modules/analytics/analytics.route.ts
 var router15 = Router12();
-var accessRole13 = auth(Role.ADMIN, Role.SUPER_ADMIN);
-router15.get("/", accessRole13, analyticsController.getAnalytics);
+var accessRole14 = auth(Role.ADMIN, Role.SUPER_ADMIN);
+router15.get("/", accessRole14, analyticsController.getAnalytics);
 var AnalyticsRoutes = router15;
 
 // src/app/modules/dashboard-analytics/dashboard.route.ts
@@ -6304,16 +6305,16 @@ var ReviewController = {
 
 // src/app/modules/reviews/review.route.ts
 var router17 = Router14();
-var accessRole14 = auth(Role.ADMIN, Role.SUPER_ADMIN);
+var accessRole15 = auth(Role.ADMIN, Role.SUPER_ADMIN);
 router17.post("/", ReviewController.createReview);
 router17.get(
   "/product/:productId",
-  accessRole14,
+  accessRole15,
   ReviewController.getProductReviews
 );
-router17.get("/:id", accessRole14, ReviewController.getSingleReview);
-router17.patch("/:id", accessRole14, ReviewController.updateReview);
-router17.delete("/:id", accessRole14, ReviewController.deleteReview);
+router17.get("/:id", accessRole15, ReviewController.getSingleReview);
+router17.patch("/:id", accessRole15, ReviewController.updateReview);
+router17.delete("/:id", accessRole15, ReviewController.deleteReview);
 var ReviewRoutes = router17;
 
 // src/app/routes/index.ts
@@ -6370,9 +6371,9 @@ var app = express4();
 var corsOptions = {
   origin: [
     "http://localhost:3000",
-    "https://www.seraplace.com",
-    "www.seraplace.com",
-    "https://next-buy-ai-frontend.vercel.app"
+    // "https://www.seraplace.com",
+    // "www.seraplace.com",
+    "https://amina-sports-frontend.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
