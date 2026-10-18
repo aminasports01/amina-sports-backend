@@ -10,9 +10,8 @@ const app: Application = express();
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    // "https://www.seraplace.com",
-    // "www.seraplace.com",
-    "https://amina-sports-frontend.vercel.app",
+    "https://www.aminasports.com",
+    "www.aminasports.com",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
