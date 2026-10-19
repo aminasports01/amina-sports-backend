@@ -6,6 +6,7 @@ var __export = (target, all) => {
 
 // src/app.ts
 import express4 from "express";
+import cors from "cors";
 
 // src/app/config/env.ts
 import dotenv from "dotenv";
@@ -51,9 +52,6 @@ var notFound = (req, res) => {
     message: `Route ${req.originalUrl} not found`
   });
 };
-
-// src/app.ts
-import cors from "cors";
 
 // src/app/routes/index.ts
 import { Router as Router15 } from "express";
@@ -6368,13 +6366,22 @@ var handleWebhook = async (req, res) => {
 
 // src/app.ts
 var app = express4();
+var allowedOrigins = [
+  "http://localhost:3000",
+  "https://www.aminasports.com",
+  "https://aminasports.com",
+  "https://amina-sports-frontend.vercel.app"
+];
 var corsOptions = {
-  origin: [
-    "http://localhost:3000",
-    // "https://www.seraplace.com",
-    // "www.seraplace.com",
-    "https://amina-sports-frontend.vercel.app"
-  ],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(
+        new Error(`CORS policy error: Origin ${origin} is not allowed.`)
+      );
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: [
